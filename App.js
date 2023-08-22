@@ -10,6 +10,7 @@ import {configTheme} from "./theming";
 import {AppContext} from "./helpers/app_context";
 import {getData, setData} from "./helpers/async_storage";
 import CreateRoom from "./screens/App/CreateRoom";
+import Settings from "./screens/App/Settings";
 
 
 const Stack = createNativeStackNavigator();
@@ -19,6 +20,8 @@ const AppStack = () => {
         <Stack.Navigator>
             <Stack.Screen options={{headerShown: false}} name={"Home"} component={Home}/>
             <Stack.Screen options={{headerShown: false, presentation:"modal"}} name={"CreateRoom"} component={CreateRoom}/>
+            <Stack.Screen options={{headerShown: false, presentation:"modal"}} name={"Setting"} component={Settings}/>
+
         </Stack.Navigator>
     )
 }
