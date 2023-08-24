@@ -11,6 +11,8 @@ import {AppContext} from "./helpers/app_context";
 import {getData, setData} from "./helpers/async_storage";
 import CreateRoom from "./screens/App/CreateRoom";
 import Settings from "./screens/App/Settings";
+import ChatRoom from "./screens/App/ChatRoom";
+import Todo from "./screens/App/Todo";
 
 
 const Stack = createNativeStackNavigator();
@@ -19,6 +21,8 @@ const AppStack = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen options={{headerShown: false}} name={"Home"} component={Home}/>
+            <Stack.Screen options={{headerShown: false}} name={"Todo"} component={Todo}/>
+            <Stack.Screen options={{headerShown: false}} name={"ChatRoom"} component={ChatRoom}/>
             <Stack.Screen options={{headerShown: false, presentation:"modal"}} name={"CreateRoom"} component={CreateRoom}/>
             <Stack.Screen options={{headerShown: false, presentation:"modal"}} name={"Setting"} component={Settings}/>
 

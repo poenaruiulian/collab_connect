@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import {getDatabase} from "@firebase/database";
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyBOSD_FHR6cY_8VyTfXkB9l0VyZWrG0yi0",
@@ -7,11 +9,13 @@ const firebaseConfig = {
     projectId: "collabconnect-dc39f",
     storageBucket: "collabconnect-dc39f.appspot.com",
     messagingSenderId: "18437694335",
-    appId: "1:18437694335:web:1904aed35016620a6f304a"
+    appId: "1:18437694335:web:1904aed35016620a6f304a",
+    databaseURL:"https://collabconnect-dc39f-default-rtdb.firebaseio.com/"
 };
 
 const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
 const auth = getAuth(app);
 
 
-export {auth}
+export {auth, database}
