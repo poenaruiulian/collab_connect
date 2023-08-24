@@ -25,19 +25,18 @@ export async function createRoom({teacher:teacher, id:id, members:members}) {
 
     await set(ref(database, 'todos/'+id), {
         todo:[{
-            task:"This will be done.",
+            task:"These tasks here will be done.",
             createdBy:"CollabConnect"
         }],
         doing:[{
-            task:"We are working on this.",
+            task:"These tasks here are work in progress.",
             createdBy:"CollabConnect"
         }],
         done:[{
-            task:"This task is done.",
+            task:"These tasks here are done.",
             createdBy:"CollabConnect"
         }]
     });
-
 
 
     await addDoc(rooms,{

@@ -18,8 +18,6 @@ export function editTodos({id:id, currentState:currentState,futureState:futureSt
             }
             delete aux[String(Object.keys(snapshot.val()).length-1)];
 
-            console.log("--", aux);
-
             const updates = {};
             updates['todos/'+id + "/" + currentState] = aux;
 
