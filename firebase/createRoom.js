@@ -3,13 +3,7 @@ import {database} from "./firebase";
 import { ref, set } from "firebase/database";
 
 const firestore = getFirestore();
-const rooms = collection(firestore, "rooms");
 
-async function addFirebaseIdToRoom(id){
-    await updateDoc(doc(firestore, "rooms", id),{
-        firebaseId:id
-    })
-}
 export async function createRoom({teacher:teacher, id:id, members:members}) {
     await set(ref(database, '/chats/students/'+id), {
         messages:[
@@ -38,11 +32,10 @@ export async function createRoom({teacher:teacher, id:id, members:members}) {
         }]
     });
 
-
-    await addDoc(rooms,{
-        firebaseId:"",
+    await set(ref(database, 'rooms/'+id), {
         id:id,
         members:members,
         teacher:teacher
-    }).then((res)=>addFirebaseIdToRoom(res.id));
+    });
+
 }
