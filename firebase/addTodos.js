@@ -12,7 +12,6 @@ export function addTodos({id: id, state: state, task: task, createdBy: createdBy
     get(child(ref(database), '/todos/' + id + "/" + state)).then((snapshot) => {
         if (snapshot.exists()) {
             const updates = {};
-            postData.task = postData.task+String(Object.keys(snapshot.val()).length)
             updates['/todos/' + id + "/" + state + "/" + Object.keys(snapshot.val()).length] = postData;
 
             update(ref(database), updates);

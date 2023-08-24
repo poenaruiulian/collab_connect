@@ -22,6 +22,7 @@ export default function ChatRoom({navigation, route}) {
     const messagesRefAll = ref(database, 'chats/all/' + route.params.roomId + '/messages');
     const messagesRefStudents = ref(database, 'chats/students/' + route.params.roomId + '/messages');
 
+
     useEffect(() => {
         onValue(messagesRefAll, (snapshot) => {
             const data = snapshot.val();
@@ -35,8 +36,8 @@ export default function ChatRoom({navigation, route}) {
     }, []);
 
     return (
-        <View style={{flex: 1, alignItems: "center"}} bg-primary>
-            <KeyboardAvoidingView behavior={"position"} style={{flex: 1}}>
+        <View flex style={{ alignItems: "center"}} bg-primary>
+            <KeyboardAvoidingView behavior={"position"}>
                 <KSpacer height={40}/>
                 <View width={"100%"} row bg-tertiary br30 padding-10 centerV>
                     <TouchableOpacity onPress={() => navigation.pop()}>
@@ -45,7 +46,7 @@ export default function ChatRoom({navigation, route}) {
                     <View width={10}></View>
                     <Text bigLabel primary>Room: {route.params.roomId}</Text>
                     <View width={10}></View>
-                    <TouchableOpacity onPress={()=>navigation.navigate("Todo")}>
+                    <TouchableOpacity onPress={()=>navigation.navigate("Todo", {roomId:route.params.roomId, name:route.params.name})}>
                         <Text bigLabel orange10>Tasks</Text>
                     </TouchableOpacity>
                 </View>
@@ -73,7 +74,7 @@ export default function ChatRoom({navigation, route}) {
                         </TouchableOpacity>
                     </View>}
                 <KSpacer height={10}/>
-                <View style={{backgroundColor: Colors.primary}} height={"70%"} width={"100%"} padding-5>
+                <View style={{backgroundColor: Colors.primary}} flex width={"100%"} padding-5>
                     {
                         whichChat ?
                             <FlatList data={messagesAll} renderItem={({item}) =>
@@ -84,7 +85,7 @@ export default function ChatRoom({navigation, route}) {
                                                 <Text text90R grey20>{item.message}</Text>
                                             </View> :
                                             <View style={{
-                                                alignItems: item.name === route.params.name ? "flex-end" : "flex-start",
+                                                alignItems: item.name === route.params.name || item.name === route.params.name+" - teacher" ? "flex-end" : "flex-start",
                                             }}
                                             >
                                                 <Text smallLabel tertiary>{item.name}</Text>
@@ -124,8 +125,7 @@ export default function ChatRoom({navigation, route}) {
 
                     }
                 </View>
-                <KSpacer height={50}/>
-                <View flex bg-secondary width={"105%"} row centerH>
+                <View bg-secondary  width={"105%"} row centerH>
                     <View padding-10 width={'75%'}>
                         <TextInput
                             style={{
@@ -147,7 +147,7 @@ export default function ChatRoom({navigation, route}) {
                             addMessage({
                                 id: route.params.roomId,
                                 message: messageToSend,
-                                name: route.params.name + admin ? " - teacher" : "",
+                                name: route.params.name + `${admin?" - teacher":""}`,
                                 isAll: whichChat
                             })
                             setMessageToSend("");
@@ -156,7 +156,6 @@ export default function ChatRoom({navigation, route}) {
                             <FontAwesomeIcon icon={faPaperPlane} size={24} color={Colors.grey30}/>
                         </TouchableOpacity>
                     </View>
-                    <KSpacer height={50}/>
                 </View>
             </KeyboardAvoidingView>
         </View>
