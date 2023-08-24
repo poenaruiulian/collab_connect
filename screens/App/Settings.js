@@ -14,23 +14,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faGear} from "@fortawesome/free-solid-svg-icons";
 import {getUserData} from "../../firebase/getUserData";
 
-export default function Settings({navigation}) {
+export default function Settings({navigation, route}) {
 
     const {admin, setAdmin} = useContext(AppContext);
-    const [userData, setUserData] = useState({});
-
-
-    useEffect(() => {
-        const getUser = async () => await getUserData({admin:admin, mail:auth?.currentUser.email
-    }).then(resp => {
-            setUserData(resp);
-        })
-        getUser()
-    }, []);
 
     return (
         <ScrollView contentContainerStyle={{flex: 1, alignItems: "center"}}>
             <KSpacer height={50}/>
+            <Text>{route.params.name}</Text>
             <KButton
                 title={"Log out"}
                 bgColor={admin ? Colors.red10 : Colors.green10}

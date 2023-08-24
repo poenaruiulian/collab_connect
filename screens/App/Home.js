@@ -43,7 +43,9 @@ export default function Home({navigation}) {
         })
         getUser()
         getRooms()
-    }, [rooms]);
+
+        //TODO put in deps the rooms
+    }, []);
 
     return (
         // <ScrollView contentContainerStyle={{flex: 1, alignItems: "center"}} refreshControl={
@@ -57,7 +59,7 @@ export default function Home({navigation}) {
             <KSpacer height={50}/>
             <View width={"90%"} row spread style={{alignItems: "center"}}>
                 <Text bigLabel grey10>Welcome, {userData?.name ?? "friend"}</Text>
-                <TouchableOpacity onPress={() => navigation.navigate("Setting")}>
+                <TouchableOpacity onPress={() => navigation.navigate("Setting",{name:userData.name})}>
                     <FontAwesomeIcon icon={faGear} size={32} color={Colors.grey10}/>
                 </TouchableOpacity>
             </View>
@@ -83,12 +85,12 @@ export default function Home({navigation}) {
                             {
                                 text: "Confirm",
                                 style:"destructive",
-                                onPress: () => deleteRoom(item.firebaseId)
+                                onPress: () => deleteRoom({firebaseId:item.firebaseId, id:item.id})
                             }
                         ]
                     )
                 }} onPress={() => {
-                    console.log("Press")
+                    navigation.navigate("ChatRoom",{roomId:item.id, name:userData.name})
                 }}>
                     <View center height={70} width={"90%"} bg-primary padding-10 br30 row
                           style={{justifyContent: "space-evenly"}}>
