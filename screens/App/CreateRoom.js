@@ -1,13 +1,14 @@
 import {View, Text, Colors} from "react-native-ui-lib";
 import {FlatList, TextInput} from "react-native";
 import {generateRoomId} from "../../helpers/generateRoomId";
-import {useState} from "react";
+import React, {useState} from "react";
 import KButton from "../../components/KButton";
 import KSpacer from "../../components/KSpacer";
 import {isStudent} from "../../firebase/isStudent";
 import {getStudentData} from "../../firebase/getStudentData";
 import {createRoom} from "../../firebase/createRoom";
 import {auth} from "../../firebase/firebase";
+import LottieView from "lottie-react-native";
 
 
 export default function CreateRoom({navigation}) {
@@ -61,20 +62,40 @@ export default function CreateRoom({navigation}) {
                 </View>
             </View>
             <KSpacer height={20}/>
-            <Text bigLabel primary>Members:</Text>
-            <KSpacer height={10}/>
-            <View height={"60%"}>
-                {/*TODO Lottie when list empty*/}
-                <FlatList contentContainerStyle={{backgroundColor: Colors.pimary}} data={roomMembers}
-                          renderItem={({item}) =>
-                              <>
-                                  <View row center height={50} width={"100%"} padding-10 bg-tertiary br30>
-                                      <Text smallLabel secondary>Name: <Text>{item.name} {"\t"}</Text></Text>
-                                      <Text smallLabel secondary>Email: <Text>{item.mail}</Text></Text>
-                                  </View>
-                                  <KSpacer height={5}/>
-                              </>
-                          }/>
+
+            <View height={"60%"} center>
+                {
+                    roomMembers.length === 0 ?
+                        <>
+                            <View center>
+                                <LottieView
+                                    autoPlay
+                                    speed={1.5}
+                                    loop={false}
+                                    source={require("../../lottie/room.json")}
+                                    style={{ height: 480, width: 480 }}
+                                />
+                                <Text smallLabel grey40> No members</Text>
+                            </View>
+                            <KSpacer height={20} />
+                        </>
+                        :
+                        <>
+                            <Text bigLabel primary>Members:</Text>
+                            <KSpacer height={10}/>
+                            <FlatList contentContainerStyle={{backgroundColor: Colors.pimary}} data={roomMembers}
+                                      renderItem={({item}) =>
+                                          <>
+                                              <View row center height={50} width={"100%"} padding-10 bg-tertiary br30>
+                                                  <Text smallLabel secondary>Name: <Text>{item.name} {"\t"}</Text></Text>
+                                                  <Text smallLabel secondary>Email: <Text>{item.mail}</Text></Text>
+                                              </View>
+                                              <KSpacer height={5}/>
+                                          </>
+                                      }/>
+                        </>
+                }
+
             </View>
 
             <KSpacer height={20}/>

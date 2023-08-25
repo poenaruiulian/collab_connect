@@ -2,9 +2,9 @@ import { Colors, Typography, Assets } from 'react-native-ui-lib';
 
 export const configTheme = () => {
     Colors.loadColors({
-        primary:"#92B4EC",
-        secondary:"#FFD24C",
-        tertiary:"#FFE69A",
+        primary:"#537188",
+        secondary:"#CBB279",
+        tertiary:"#E1D4BB",
         background:"#FFFFFF"
     })
 
