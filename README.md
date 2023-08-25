@@ -2,11 +2,11 @@
 
 >  Welcome to ✨CollabConnect ✨, your gateway to a new era of education. We bring teachers and students together in a virtual space that's all about seamless communication and collaboration.
 
->>  Imagine classrooms without walls, where learning happens anytime, anywhere. With ✨CollabConnect ✨, teachers create *Rooms* that host two types of chats. In the *Student Chat*, students exchange ideas and questions. In the *Teacher-Student Chat*, mentors guide discussions to deeper insights.
+>  Imagine classrooms without walls, where learning happens anytime, anywhere. With ✨CollabConnect ✨, teachers create *Rooms* that host two types of chats. In the *Student Chat*, students exchange ideas and questions. In the *Teacher-Student Chat*, mentors guide discussions to deeper insights.
 
->>  But it doesn't stop there. We've also integrated a *Tasks* feature that turns assignments into team efforts. Think of it as a digital workspace, like what you find on GitHub, where everyone contributes to shared goals.
+>  But it doesn't stop there. We've also integrated a *Tasks* feature that turns assignments into team efforts. Think of it as a digital workspace, like what you find on GitHub, where everyone contributes to shared goals.
 
->>  Join us and experience education without boundaries. ✨CollabConnect ✨ isn't just an app; it's a community where minds meet, ideas flourish, and learning knows no limits
+>  Join us and experience education without boundaries. ✨CollabConnect ✨ isn't just an app; it's a community where minds meet, ideas flourish, and learning knows no limits
 
 ---
 
@@ -67,6 +67,8 @@
   <img src="readme-images/donig.png" height="620" width="270">
   <img src="readme-images/done.png" height="620" width="270">
 </div>
+
+---
 
 > #### Empowered by React Native and Firebase, our application comes to life. Seamlessly crafted to provide a cutting-edge user experience, React Native forms the foundation. Firebase, our trusted partner, stores user data securely while enabling real-time updates for rooms, messages, and tasks through a dynamic real-time database. Every user benefits from instant data synchronization, ensuring a fluid and responsive learning environment.
 
