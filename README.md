@@ -1,4 +1,4 @@
-## ✨ CollabConnect ✨ *Connecting Minds, Inspiring Futures*.
+## ✨ CollabConnect ✨ - *Connecting Minds, Inspiring Futures*.
 
 >  Welcome to ✨CollabConnect ✨, your gateway to a new era of education. We bring teachers and students together in a virtual space that's all about seamless communication and collaboration.
 
