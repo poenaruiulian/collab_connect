@@ -40,7 +40,7 @@ export default function Todo({navigation, route}) {
     return (
         <View flex style={{alignItems: "center"}} bg-primary>
             <KeyboardAvoidingView behavior={"position"} >
-                <KSpacer height={40}/>
+                <KSpacer height={52}/>
                 <View width={"100%"} row bg-tertiary br30 padding-10 centerV>
                     <TouchableOpacity onPress={() => navigation.pop()}>
                         <FontAwesomeIcon icon={faChevronLeft} size={24} color={Colors.primary}/>
@@ -95,13 +95,13 @@ export default function Todo({navigation, route}) {
                                       <>
                                           {
                                               todos.todo.indexOf(item) === 0 ?
-                                                  <View centerV padding-s4 bg-grey50 br30 style={{height: 60}}>
+                                                  <View centerV padding-s4 bg-grey40 br30 style={{height: 60}}>
                                                       <Text text70>{item.task}</Text>
                                                       <Text text90>{item.createdBy}</Text>
                                                   </View> : <GestureHandlerRootView style={{alignItems: "center"}}>
                                                       <Drawer
                                                           style={{
-                                                              width: "90%",
+                                                              width: "100%",
                                                               borderRadius: 10
                                                           }}
                                                           rightItems={[{
@@ -149,13 +149,13 @@ export default function Todo({navigation, route}) {
                                       <>
                                           {
                                               todos.doing.indexOf(item) === 0 ?
-                                                  <View centerV padding-s4 bg-grey50 br30 style={{height: 60}}>
+                                                  <View centerV padding-s4 bg-grey40 br30 style={{height: 60}}>
                                                       <Text text70>{item.task}</Text>
                                                       <Text text90>{item.createdBy}</Text>
                                                   </View> : <GestureHandlerRootView style={{alignItems: "center"}}>
                                                       <Drawer
                                                           style={{
-                                                              width: "90%",
+                                                              width: "100%",
                                                               borderRadius: 10
                                                           }}
                                                           rightItems={[{
@@ -204,13 +204,13 @@ export default function Todo({navigation, route}) {
                                       <>
                                           {
                                               todos.done.indexOf(item) === 0 ?
-                                                  <View centerV padding-s4 bg-grey50 br30 style={{height: 60}}>
+                                                  <View centerV padding-s4 bg-grey40 br30 style={{height: 60}}>
                                                       <Text text70>{item.task}</Text>
                                                       <Text text90>{item.createdBy}</Text>
                                                   </View> : <GestureHandlerRootView style={{alignItems: "center"}}>
                                                       <Drawer
                                                           style={{
-                                                              width: "90%",
+                                                              width: "100%",
                                                               borderRadius: 10
                                                           }}
                                                           rightItems={[{
@@ -277,11 +277,12 @@ export default function Todo({navigation, route}) {
                                 setTask("")
                                 Keyboard.dismiss()
                             }}>
-                                <FontAwesomeIcon icon={faCirclePlus} size={32} color={Colors.grey30}/>
+                                <FontAwesomeIcon icon={faCirclePlus} size={32} color={Colors.secondary}/>
                             </TouchableOpacity>
                         </View>
                     </View>
                 }
+                <KSpacer height={10}/>
             </KeyboardAvoidingView>
         </View>
 

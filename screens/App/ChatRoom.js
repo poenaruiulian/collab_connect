@@ -36,18 +36,21 @@ export default function ChatRoom({navigation, route}) {
     }, []);
 
     return (
-        <View flex style={{ alignItems: "center"}} bg-primary>
+        <View flex style={{alignItems: "center"}} bg-primary>
             <KeyboardAvoidingView behavior={"position"}>
-                <KSpacer height={40}/>
-                <View width={"100%"} row bg-tertiary br30 padding-10 centerV>
+                <KSpacer height={52}/>
+                <View width={"100%"} row bg-tertiary padding-10 centerV>
                     <TouchableOpacity onPress={() => navigation.pop()}>
                         <FontAwesomeIcon icon={faChevronLeft} size={24} color={Colors.primary}/>
                     </TouchableOpacity>
                     <View width={10}></View>
                     <Text bigLabel primary>Room: {route.params.roomId}</Text>
                     <View width={10}></View>
-                    <TouchableOpacity onPress={()=>navigation.navigate("Todo", {roomId:route.params.roomId, name:route.params.name})}>
-                        <Text bigLabel orange10>Tasks</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate("Todo", {
+                        roomId: route.params.roomId,
+                        name: route.params.name
+                    })}>
+                        <Text bigLabel secondary underline>Tasks</Text>
                     </TouchableOpacity>
                 </View>
                 <KSpacer height={10}/>
@@ -61,7 +64,7 @@ export default function ChatRoom({navigation, route}) {
                             borderRadius: 10,
                             padding: 10
                         }} onPress={() => setWhichChat(false)}>
-                            <Text>Students</Text>
+                            <Text smallLabel tertiary>Students</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={{
                             alignItems: "center",
@@ -70,7 +73,7 @@ export default function ChatRoom({navigation, route}) {
                             borderRadius: 10,
                             padding: 10
                         }} onPress={() => setWhichChat(true)}>
-                            <Text>All</Text>
+                            <Text smallLabel tertiary>All</Text>
                         </TouchableOpacity>
                     </View>}
                 <KSpacer height={10}/>
@@ -82,17 +85,17 @@ export default function ChatRoom({navigation, route}) {
                                     {
                                         messagesAll.indexOf(item) === 0 ?
                                             <View padding-10 center>
-                                                <Text text90R grey20>{item.message}</Text>
+                                                <Text text90R grey10>{item.message}</Text>
                                             </View> :
                                             <View style={{
-                                                alignItems: item.name === route.params.name || item.name === route.params.name+" - teacher" ? "flex-end" : "flex-start",
+                                                alignItems: item.name === route.params.name || item.name === route.params.name + " - teacher" ? "flex-end" : "flex-start",
                                             }}
                                             >
                                                 <Text smallLabel tertiary>{item.name}</Text>
                                                 <View padding-5 br30 bg-secondary style={{
                                                     maxWidth: "46%",
                                                 }}>
-                                                    <Text mediumLabel grey20>{item.message}</Text>
+                                                    <Text mediumLabel primary>{item.message}</Text>
                                                 </View>
                                             </View>
                                     }
@@ -105,7 +108,7 @@ export default function ChatRoom({navigation, route}) {
                                     {
                                         messagesStudents.indexOf(item) === 0 ?
                                             <View padding-10 center>
-                                                <Text text90R grey20>{item.message}</Text>
+                                                <Text text90R grey10>{item.message}</Text>
                                             </View> :
                                             <View style={{
                                                 alignItems: item.name === route.params.name ? "flex-end" : "flex-start",
@@ -125,37 +128,40 @@ export default function ChatRoom({navigation, route}) {
 
                     }
                 </View>
-                <View bg-secondary  width={"105%"} row centerH>
-                    <View padding-10 width={'75%'}>
-                        <TextInput
-                            style={{
-                                borderRadius: 10,
-                                height: 50,
+                <View bg-secondary>
+                    <View bg-secondary width={"105%"} row centerH>
+                        <View padding-10 width={'75%'}>
+                            <TextInput
+                                style={{
+                                    borderRadius: 10,
+                                    height: 50,
+                                    width: "100%",
+                                    backgroundColor: Colors.tertiary,
+                                    color:Colors.primary
+                                }}
+                                textAlign={"center"}
+                                onChangeText={(text) => setMessageToSend(text)}
+                                value={messageToSend}
+                            />
+                        </View>
+                        <View padding-20 paddingL-10>
+                            <TouchableOpacity style={{
                                 width: "100%",
-                                backgroundColor: Colors.tertiary,
-
-                            }}
-                            textAlign={"center"}
-                            onChangeText={(text) => setMessageToSend(text)}
-                            value={messageToSend}
-                        />
+                            }} onPress={() => {
+                                addMessage({
+                                    id: route.params.roomId,
+                                    message: messageToSend,
+                                    name: route.params.name + `${admin ? " - teacher" : ""}`,
+                                    isAll: whichChat
+                                })
+                                setMessageToSend("");
+                                Keyboard.dismiss()
+                            }}>
+                                <FontAwesomeIcon icon={faPaperPlane} size={24} color={Colors.primary}/>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    <View padding-20>
-                        <TouchableOpacity style={{
-                            width: "100%"
-                        }} onPress={() => {
-                            addMessage({
-                                id: route.params.roomId,
-                                message: messageToSend,
-                                name: route.params.name + `${admin?" - teacher":""}`,
-                                isAll: whichChat
-                            })
-                            setMessageToSend("");
-                            Keyboard.dismiss()
-                        }}>
-                            <FontAwesomeIcon icon={faPaperPlane} size={24} color={Colors.grey30}/>
-                        </TouchableOpacity>
-                    </View>
+                    <KSpacer height={10}/>
                 </View>
             </KeyboardAvoidingView>
         </View>

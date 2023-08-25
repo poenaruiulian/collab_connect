@@ -7,6 +7,7 @@ import {handleLogin} from "../../firebase/handleLogin";
 import {AppContext} from "../../helpers/app_context";
 import {setData} from "../../helpers/async_storage";
 import {isStudent} from "../../firebase/isStudent";
+import LottieView from "lottie-react-native";
 
 export default function AuthMain() {
 
@@ -17,8 +18,14 @@ export default function AuthMain() {
 
     return (
         <ScrollView contentContainerStyle={{flex: 1, justifyContent: "center", alignItems: "center"}}>
-
-            <KSpacer height={20}/>
+            <View center>
+                <LottieView
+                    autoPlay
+                    loop
+                    source={require("../../lottie/welcome.json")}
+                    style={{ height: 200, width: 200 }}
+                />
+            </View>
             <View row cente spread style={{width: "60%"}} backgroundColor={Colors.tertiary} padding-10 br50>
                 <TouchableOpacity
                     onPress={() => setWhichAuth(true)}
